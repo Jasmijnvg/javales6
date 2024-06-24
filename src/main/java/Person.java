@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Person {
@@ -6,8 +7,8 @@ public class Person {
     private String lastName;
     private String sex;
     private int age;
-    private String mother;
-    private String father;
+    private Person mother;
+    private Person father;
     private List<Person> siblings;
     private List<Person> children;
     private List<Pet> pets;
@@ -67,27 +68,27 @@ public class Person {
         this.age = age;
     }
 
-    public String getMother() {
+    public Person getMother() {
         return mother;
     }
 
-    public void setMother(String mother) {
+    public void setMother(Person mother) {
         this.mother = mother;
     }
 
-    public String getFather() {
+    public Person getFather() {
         return father;
     }
 
-    public void setFather(String father) {
+    public void setFather(Person father) {
         this.father = father;
     }
 
-    public List<String> getSiblings() {
+    public List<Person> getSiblings() {
         return siblings;
     }
 
-    public List<String> getChildren() {
+    public List<Person> getChildren() {
         return children;
     }
 
@@ -125,9 +126,15 @@ public class Person {
         }
     }
 
-    public void getGrandChildren() {
+    public List<Person> getGrandChildren() {
+       List<Person> grandChildren = new ArrayList<>();
+
         for (Person child : children) {
-            child.getGrandChildren();
+            for (Person grandChild: child.children){
+                grandChildren.addAll(child.children);
+            }
         }
+
+        return grandChildren;
     }
 }
