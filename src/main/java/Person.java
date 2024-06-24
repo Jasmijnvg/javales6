@@ -88,50 +88,49 @@ public class Person {
         return siblings;
     }
 
+    public void setSiblings(List<Person> siblings) {
+        this.siblings = siblings;
+    }
+
     public List<Person> getChildren() {
         return children;
+    }
+
+    public void setChildren(List<Person> children) {
+        this.children = children;
     }
 
     public List<Pet> getPets() {
         return pets;
     }
 
+    public void setPets(List<Pet> pets) {
+        this.pets = pets;
+    }
+
     public void addParents(Person mother, Person father) {
-        if (mother != null) {
-            this.mother = mother;
-            mother.addChild(this);
-        }
-        if (father != null) {
-            this.father = father;
-            father.addChild(this);
-        }
+        this.mother = mother;
+        this.father = father;
     }
 
     public void addChild(Person child) {
-        if (child != null && !this.children.contains(child)) {
-            this.children.add(child);
-        }
+        children.add(child);
     }
 
     public void addPet(Pet pet) {
-        if (pet != null && !this.pets.contains(pet)) {
-            this.pets.add(pet);
-            pet.setOwner(this);
-        }
+        pets.add(pet);
     }
 
-    public void addSibling(Person siblings){
-        if (siblings != null && !this.siblings.contains(siblings)) {
-            this.siblings.add(siblings);
-        }
+    public void addSibling(Person sibling){
+        siblings.add(sibling);
     }
 
     public List<Person> getGrandChildren() {
-       List<Person> grandChildren = new ArrayList<>();
+        List<Person> grandChildren = new ArrayList<>();
 
-        for (Person child : children) {
-            for (Person grandChild: child.children){
-                grandChildren.addAll(child.children);
+        for (Person children : children) {
+            for (Person grandChild: children.children){
+                grandChildren.addAll(children.children);
             }
         }
 
